@@ -1,0 +1,27 @@
+inputs:
+  question:
+    type: string
+
+outputs:
+  answer:
+    type: string
+    reference: ${llm.output}
+
+nodes:
+  - name: retrieval
+    type: python
+    source:
+      type: code
+      path: retrieval.py
+
+  - name: llm
+    type: llm
+    source:
+      type: code
+      path: openai.yaml
+    inputs:
+      question: ${inputs.question}
+      context: ${retrieval.output}
+    connection: openai_conn
+    api: completion
+    deployment_name: gpt-4o

@@ -1,0 +1,10 @@
+prompt: |
+  You are a helpful travel assistant.
+
+  Use the context below to answer the question.
+
+  Context:
+  {{context}}
+
+  Question:
+  {{question}}
