@@ -1,31 +1,27 @@
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
-
 inputs:
   question:
     type: string
-
 outputs:
   answer:
     type: string
     reference: ${llm.output}
-
 nodes:
-  - name: retrieval
-    type: python
-    source:
-      type: code
-      path: retrieval.py
-    inputs:
-      question: ${inputs.question}
-
-  - name: llm
-    type: llm
-    source:
-      type: code
-      path: openai.yaml
-    inputs:
-      question: ${inputs.question}
-      context: ${retrieval.output}
-    connection: openai_conn
-    api: completion
-    deployment_name: gpt-4o
+- name: retrieval
+  type: python
+  source:
+    type: code
+    path: retrieval.py
+  inputs:
+    question: ${inputs.question}
+- name: llm
+  type: llm
+  source:
+    type: code
+    path: openai.yaml
+  inputs:
+    question: ${inputs.question}
+    context: ${retrieval.output}
+  connection: openai_conn
+  api: completion
+  deployment_name: gpt-4o
