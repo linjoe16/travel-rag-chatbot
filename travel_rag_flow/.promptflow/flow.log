@@ -1,0 +1,23 @@
+2026-04-07 19:43:06 +0000   47679 execution.flow     INFO     Start executing nodes in thread pool mode.
+2026-04-07 19:43:06 +0000   47679 execution.flow     INFO     Start to run 2 nodes with concurrency level 16.
+2026-04-07 19:43:06 +0000   47679 execution.flow     INFO     Executing node retrieval. node run id: a799ea70-ae78-4236-a093-3828c846ca3f_retrieval_0
+2026-04-07 19:43:06 +0000   47679 execution          ERROR    Node retrieval in line 0 failed. Exception: Execution failure in 'retrieval': (TypeError) retrieval() missing 1 required positional argument: 'question'.
+Traceback (most recent call last):
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/_core/flow_execution_context.py", line 182, in _invoke_tool_inner
+    return f(**kwargs)
+           ^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/tracing/_trace.py", line 545, in wrapped
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+TypeError: retrieval() missing 1 required positional argument: 'question'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/_core/flow_execution_context.py", line 90, in invoke_tool
+    result = self._invoke_tool_inner(node, f, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/_core/flow_execution_context.py", line 206, in _invoke_tool_inner
+    raise ToolExecutionError(node_name=node_name, module=module) from e
+promptflow._core._errors.ToolExecutionError: Execution failure in 'retrieval': (TypeError) retrieval() missing 1 required positional argument: 'question'
+2026-04-07 19:43:06 +0000   47679 execution.flow     ERROR    Flow execution has failed. Cancelling all running nodes: retrieval.

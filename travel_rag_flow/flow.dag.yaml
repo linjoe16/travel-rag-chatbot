@@ -1,3 +1,5 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+
 inputs:
   question:
     type: string
@@ -13,6 +15,8 @@ nodes:
     source:
       type: code
       path: retrieval.py
+    inputs:
+      question: ${inputs.question}
 
   - name: llm
     type: llm
