@@ -1,7 +1,7 @@
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
 
 name: openai_conn
-type: AzureOpenAI
+type: azure_open_ai
 
 api_key: ${env:OPENAI_API_KEY}
 api_base: ${env:OPENAI_API_BASE}
