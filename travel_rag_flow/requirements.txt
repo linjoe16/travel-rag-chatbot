@@ -1,4 +1,5 @@
 promptflow
 azure-search-documents
 azure-core
-openai
+openai# redeploy trigger
+force rebuild
