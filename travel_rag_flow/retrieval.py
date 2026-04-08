@@ -5,23 +5,26 @@ import os
 
 @tool
 def retrieval(question: str) -> str:
-    search_endpoint = os.environ.get("AZURE_SEARCH_ENDPOINT")
-    search_key = os.environ.get("AZURE_SEARCH_KEY")
-    index_name = os.environ.get("AZURE_SEARCH_INDEX", "travel-index")
+    try:
+        search_endpoint = os.environ.get("AZURE_SEARCH_ENDPOINT", "https://wk15travelchatbot.search.windows.net")
+        search_key = os.environ.get("AZURE_SEARCH_KEY", "")
+        index_name = os.environ.get("AZURE_SEARCH_INDEX", "travel-index")
 
-    client = SearchClient(
-        endpoint=search_endpoint,
-        index_name=index_name,
-        credential=AzureKeyCredential(search_key)
-    )
+        client = SearchClient(
+            endpoint=search_endpoint,
+            index_name=index_name,
+            credential=AzureKeyCredential(search_key)
+        )
 
-    results = client.search(search_text=question, top=3)
-    
-    context = ""
-    for result in results:
-        for field in ["content", "text", "chunk", "description"]:
-            if field in result and result[field]:
-                context += result[field] + "\n\n"
-                break
+        results = client.search(search_text=question, top=3)
+        
+        context = ""
+        for result in results:
+            for field in ["content", "text", "chunk", "description"]:
+                if field in result and result[field]:
+                    context += result[field] + "\n\n"
+                    break
 
-    return context if context else f"No relevant context found for: {question}"
+        return context if context else f"No relevant context found for: {question}"
+    except Exception as e:
+        return f"Could not retrieve context: {str(e)}"
