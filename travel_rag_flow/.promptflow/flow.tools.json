@@ -1,0 +1,33 @@
+{
+  "package": {},
+  "code": {
+    "retrieval.py": {
+      "type": "python",
+      "inputs": {
+        "question": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "retrieval.py",
+      "function": "retrieval"
+    },
+    "openai.yaml": {
+      "type": "llm",
+      "inputs": {
+        "context": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "openai.yaml"
+    }
+  }
+}

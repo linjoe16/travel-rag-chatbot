@@ -22,6 +22,7 @@ nodes:
   inputs:
     question: ${inputs.question}
     context: ${retrieval.output}
+    deployment_name: gpt-4o
   connection: openai_conn
-  api: completion
-  deployment_name: gpt-4o
+  api: chat
+ 

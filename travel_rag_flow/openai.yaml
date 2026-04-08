@@ -1,10 +1,16 @@
-prompt: |
-  You are a helpful travel assistant.
+python3 -c "
+content = '''system:
+You are a helpful travel assistant for WanderNest Travels.
+Use the context below to answer the user question accurately.
+If the context does not contain relevant information, say so politely.
 
-  Use the context below to answer the question.
+Context:
+{{context}}
 
-  Context:
-  {{context}}
-
-  Question:
-  {{question}}
+user:
+{{question}}
+'''
+with open('openai.yaml', 'w') as f:
+    f.write(content)
+print('Done!')
+"

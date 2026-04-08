@@ -1,5 +1,4 @@
-python3 << 'EOF'
-content = '''from promptflow.core import tool
+from promptflow.core import tool
 from azure.search.documents import SearchClient
 from azure.core.credentials import AzureKeyCredential
 import os
@@ -22,14 +21,7 @@ def retrieval(question: str) -> str:
     for result in results:
         for field in ["content", "text", "chunk", "description"]:
             if field in result and result[field]:
-                context += result[field] + "\\n\\n"
+                context += result[field] + "\n\n"
                 break
 
     return context if context else f"No relevant context found for: {question}"
-'''
-
-with open("travel_rag_flow/retrieval.py", "w") as f:
-    f.write(content)
-
-print("File written successfully!")
-EOF
