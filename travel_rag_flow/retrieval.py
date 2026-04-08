@@ -1,5 +1,5 @@
-cat > travel_rag_flow/retrieval.py << 'EOF'
-from promptflow.core import tool
+python3 << 'EOF'
+content = '''from promptflow.core import tool
 from azure.search.documents import SearchClient
 from azure.core.credentials import AzureKeyCredential
 import os
@@ -7,8 +7,8 @@ import os
 @tool
 def retrieval(question: str) -> str:
     search_endpoint = os.environ.get("AZURE_SEARCH_ENDPOINT", "https://wk15travelchatbot.search.windows.net")
-    search_key = os.environ.get("AZURE_SEARCH_KEY", "<JB2USijvxXjWGcpPOE6bKGmgmycYMiT8QWhdFHsldqAzSeBpeUZY>")
-    index_name = os.environ.get("AZURE_SEARCH_INDEX", "<travel-index>")
+    search_key = os.environ.get("AZURE_SEARCH_KEY", "JB2USijvxXjWGcpPOE6bKGmgmycYMiT8QWhdFHsldqAzSeBpeUZY")
+    index_name = os.environ.get("AZURE_SEARCH_INDEX", "travel-index")
 
     client = SearchClient(
         endpoint=search_endpoint,
@@ -22,8 +22,14 @@ def retrieval(question: str) -> str:
     for result in results:
         for field in ["content", "text", "chunk", "description"]:
             if field in result and result[field]:
-                context += result[field] + "\n\n"
+                context += result[field] + "\\n\\n"
                 break
 
     return context if context else f"No relevant context found for: {question}"
+'''
+
+with open("travel_rag_flow/retrieval.py", "w") as f:
+    f.write(content)
+
+print("File written successfully!")
 EOF
