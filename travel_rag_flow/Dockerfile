@@ -12,4 +12,4 @@ COPY ./runit /var/runit
 RUN chmod -R +x /var/runit
 COPY ./start.sh /
 CMD ["bash", "./start.sh"]
-pip install promptflow==1.18.4 promptflow-tools keyrings.alt gunicorn==22.0.0 "uvicorn>=0.27.0,<1.0.0" azure-search-documents azure-core
+pip install promptflow==1.18.4 promptflow-tools keyrings.alt gunicorn==22.0.0 "uvicorn>=0.27.0,<1.0.0" azure-search-documents

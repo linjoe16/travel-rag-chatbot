@@ -1,16 +1,7 @@
 #!/bin/bash
 
-# stop services created by runsv and propagate SIGINT, SIGTERM to child jobs
-sv_stop() {
-    echo "$(date -uIns) - Stopping all runsv services"
-    for s in $(ls -d /var/runit/*); do
-        sv stop $s
-    done
-}
+echo "Installing dependencies..."
+pip install azure-search-documents azure-core
 
-# register SIGINT, SIGTERM handler
-trap sv_stop SIGINT SIGTERM
-
-# start services in background and wait all child jobs
-runsvdir /var/runit &
-wait
+echo "Starting PromptFlow..."
+pf flow serve --host 0.0.0.0 --port $PORT
