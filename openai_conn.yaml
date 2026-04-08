@@ -2,7 +2,7 @@
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
 name: openai_conn
 type: azure_open_ai
-api_key: "FhpzsS1ciTpS6Q0k2sfcPqri1a29me2PepKUD2xCxeT74pCnsAAoJQQJ99CDACYeBjFXJ3w3AAAAACOG7kVQ"
+api_key: "${env:AZURE_OPENAI_KEY}"
 api_base: "https://wk15travelchatbot.cognitiveservices.azure.com/"
 api_type: azure
 api_version: "2025-01-01-preview"

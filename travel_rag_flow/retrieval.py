@@ -5,8 +5,8 @@ import os
 
 @tool
 def retrieval(question: str) -> str:
-    search_endpoint = os.environ.get("AZURE_SEARCH_ENDPOINT", "https://wk15travelchatbot.search.windows.net")
-    search_key = os.environ.get("AZURE_SEARCH_KEY", "JB2USijvxXjWGcpPOE6bKGmgmycYMiT8QWhdFHsldqAzSeBpeUZY")
+    search_endpoint = os.environ.get("AZURE_SEARCH_ENDPOINT")
+    search_key = os.environ.get("AZURE_SEARCH_KEY")
     index_name = os.environ.get("AZURE_SEARCH_INDEX", "travel-index")
 
     client = SearchClient(
