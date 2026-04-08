@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/CognitiveSearchConnection.schema.json
 name: search_conn
 type: cognitive_search
-api_key: "<https://wk15travelchatbot.search.windows.net>"
-api_base: "<JB2USijvxXjWGcpPOE6bKGmgmycYMiT8QWhdFHsldqAzSeBpeUZY>"
+api_key: "<JB2USijvxXjWGcpPOE6bKGmgmycYMiT8QWhdFHsldqAzSeBpeUZY>"
+api_base: "https://wk15travelchatbot.search.windows.net"
 api_version: "2023-11-01"
