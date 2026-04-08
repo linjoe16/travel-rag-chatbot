@@ -1,0 +1,25 @@
+{
+  "nodeLayouts": {
+    "inputs": {
+      "x": 290,
+      "y": 42,
+      "index": -1
+    },
+    "outputs": {
+      "x": 220,
+      "y": 444,
+      "index": -1
+    },
+    "retrieval": {
+      "x": 227.5,
+      "y": 176,
+      "index": 0
+    },
+    "llm": {
+      "x": 140,
+      "y": 310,
+      "index": 1
+    }
+  },
+  "orientation": "Vertical"
+}
