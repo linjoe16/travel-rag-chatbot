@@ -1,8 +1,8 @@
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
 name: openai_conn
 type: azure_open_ai
-api_key: ${env:OPENAI_CONN_API_KEY}
-api_base: https://travelapp-openai.openai.azure.com/
+api_key: "DeQL6QsYNefdY0xHPnUBQpOC7rKXHQDCCoeKoEFTaUgViaAkhqDCJQQJ99CDACYeBjFXJ3w3AAABACOG4xRM"
+api_base: "https://travelapp-openai.openai.azure.com/"
 api_type: azure
-api_version: 2024-02-01
+api_version: "2024-02-01"
 auth_mode: key
