@@ -1,20 +1,14 @@
 #! /bin/bash
-
-CONDA_ENV_PATH="$(conda info --base)/envs/promptflow-serve"
-export PATH="$CONDA_ENV_PATH/bin:$PATH"
-
-ls
+export PYTHON_KEYRING_BACKEND=keyrings.alt.file.PlaintextKeyring
 ls /connections
 pf connection create --file /connections/openai_conn.yaml
-WORKER_NUM=${PROMPTFLOW_WORKER_NUM:-"8"}
-WORKER_THREADS=${PROMPTFLOW_WORKER_THREADS:-"1"}
-SERVING_ENGINE=${PROMPTFLOW_SERVING_ENGINE:-"flask"}
-gunicorn_app="promptflow.core._serving.app:create_app(engine='${SERVING_ENGINE}')"
+pf connection create --file /connections/search_conn.yaml
+WORKER_NUM=${PROMPTFLOW_WORKER_NUM:-"1"}
+SERVING_ENGINE=${PROMPTFLOW_SERVING_ENGINE:-"fastapi"}
 cd /flow
+echo "Starting promptflow serving with engine: ${SERVING_ENGINE}"
 if [ "$SERVING_ENGINE" = "flask" ]; then
-    echo "start promptflow serving with worker_num: ${WORKER_NUM}, worker_threads: ${WORKER_THREADS}, app: ${gunicorn_app}"
-    gunicorn -w ${WORKER_NUM} --threads ${WORKER_THREADS} -b "0.0.0.0:8080" --timeout 300 ${gunicorn_app}
+    gunicorn -w ${WORKER_NUM} --threads 1 -b "0.0.0.0:8080" --timeout 300 "promptflow.core._serving.app:create_app(engine='flask')"
 else
-    echo "start promptflow serving with worker_num: ${WORKER_NUM}, app: ${gunicorn_app}"
-    gunicorn --worker-class uvicorn.workers.UvicornWorker -w ${WORKER_NUM} -b "0.0.0.0:8080" --timeout 300 ${gunicorn_app}
+    gunicorn --worker-class uvicorn.workers.UvicornWorker -w ${WORKER_NUM} -b "0.0.0.0:8080" --timeout 300 "promptflow.core._serving.app:create_app(engine='fastapi')"
 fi
