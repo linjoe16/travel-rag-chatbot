@@ -1,8 +1,14 @@
+cat > docker_output/connections/openai_conn.yaml << 'EOF'
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
-
 name: openai_conn
 type: azure_open_ai
+api_key: "FhpzsS1ciTpS6Q0k2sfcPqri1a29me2PepKUD2xCxeT74pCnsAAoJQQJ99CDACYeBjFXJ3w3AAAAACOG7kVQ"
+api_base: "https://wk15travelchatbot.cognitiveservices.azure.com/"
+api_type: azure
+api_version: "2025-01-01-preview"
+auth_mode: key
+EOF
 
-api_key: ${env:OPENAI_API_KEY}
-api_base: ${env:OPENAI_API_BASE}
-api_version: ${env:OPENAI_API_VERSION}
+docker build -t travel-rag-chatbot:latest docker_output
+docker tag travel-rag-chatbot:latest travelragregistry.azurecr.io/travelrag:v3
+docker push travelragregistry.azurecr.io/travelrag:v3
