@@ -6,7 +6,6 @@ from promptflow.core import tool
 
 @tool
 def retrieval(question: str) -> str:
-    # ✅ Install dependency if missing (inside function)
     try:
         from azure.search.documents import SearchClient
         from azure.core.credentials import AzureKeyCredential
