@@ -1,0 +1,4 @@
+promptflow
+azure-search-documents
+azure-core
+openai
