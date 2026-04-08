@@ -7,8 +7,4 @@ WORKER_NUM=${PROMPTFLOW_WORKER_NUM:-"1"}
 SERVING_ENGINE=${PROMPTFLOW_SERVING_ENGINE:-"fastapi"}
 cd /flow
 echo "Starting promptflow serving with engine: ${SERVING_ENGINE}"
-if [ "$SERVING_ENGINE" = "flask" ]; then
-    gunicorn -w ${WORKER_NUM} --threads 1 -b "0.0.0.0:8080" --timeout 300 "promptflow.core._serving.app:create_app(engine='flask')"
-else
-    gunicorn --worker-class uvicorn.workers.UvicornWorker -w ${WORKER_NUM} -b "0.0.0.0:8080" --timeout 300 "promptflow.core._serving.app:create_app(engine='fastapi')"
-fi
+gunicorn --worker-class uvicorn.workers.UvicornWorker -w ${WORKER_NUM} -b "0.0.0.0:8080" --timeout 300 "promptflow.core._serving.app:create_app(engine='fastapi')"

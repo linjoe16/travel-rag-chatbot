@@ -1,0 +1,5 @@
+promptflow
+azure-search-documents
+azure-core
+openai# redeploy trigger
+force rebuild
