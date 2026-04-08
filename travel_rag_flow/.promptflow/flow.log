@@ -1,38 +1,6 @@
-2026-04-08 02:29:20 +0000   31565 execution.flow     INFO     Start executing nodes in thread pool mode.
-2026-04-08 02:29:20 +0000   31565 execution.flow     INFO     Start to run 2 nodes with concurrency level 16.
-2026-04-08 02:29:20 +0000   31565 execution.flow     INFO     Executing node retrieval. node run id: c6ae6d6b-13b5-4352-8595-434e114a98d3_retrieval_0
-2026-04-08 02:29:21 +0000   31565 execution.flow     INFO     Node retrieval completes.
-2026-04-08 02:29:21 +0000   31565 execution.flow     INFO     Executing node llm. node run id: c6ae6d6b-13b5-4352-8595-434e114a98d3_llm_0
-2026-04-08 02:29:21 +0000   31565 execution          ERROR    Node llm in line 0 failed. Exception: The Chat API requires a specific format for prompt definition, and the prompt should include separate lines as role delimiters: 'system:\n','user:\n','assistant:\n','function:\n','tool:\n'. Current parsed role 'prompt: |' does not meet the requirement. If you intend to use the Completion API, please select the appropriate API type and deployment name. If you do intend to use the Chat API, please refer to the guideline at https://aka.ms/pfdoc/chat-prompt or view the samples in our gallery that contain 'Chat' in the name..
-Traceback (most recent call last):
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/_core/flow_execution_context.py", line 90, in invoke_tool
-    result = self._invoke_tool_inner(node, f, kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/_core/flow_execution_context.py", line 201, in _invoke_tool_inner
-    raise e
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/_core/flow_execution_context.py", line 182, in _invoke_tool_inner
-    return f(**kwargs)
-           ^^^^^^^^^^^
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/executor/flow_executor.py", line 1344, in wrapper
-    return f(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/tracing/_trace.py", line 545, in wrapped
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/tools/common.py", line 550, in wrapper
-    raise e
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/tools/common.py", line 547, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/tools/aoai.py", line 130, in chat
-    messages = build_messages(prompt, **convert_to_chat_list(kwargs))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/tools/common.py", line 809, in build_messages
-    messages = parse_chat(chat_str, images=images, image_detail=image_detail, escape_dict=escape_dict)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/tools/common.py", line 340, in parse_chat
-    validate_role(role, valid_roles=valid_roles, escape_dict=escape_dict)
-  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/promptflow/tools/common.py", line 122, in validate_role
-    raise ChatAPIInvalidRole(message=error_message)
-promptflow.tools.exception.ChatAPIInvalidRole: The Chat API requires a specific format for prompt definition, and the prompt should include separate lines as role delimiters: 'system:\n','user:\n','assistant:\n','function:\n','tool:\n'. Current parsed role 'prompt: |' does not meet the requirement. If you intend to use the Completion API, please select the appropriate API type and deployment name. If you do intend to use the Chat API, please refer to the guideline at https://aka.ms/pfdoc/chat-prompt or view the samples in our gallery that contain 'Chat' in the name.
-2026-04-08 02:29:21 +0000   31565 execution.flow     ERROR    Flow execution has failed. Cancelling all running nodes: llm.
+2026-04-08 03:05:51 +0000   47978 execution.flow     INFO     Start executing nodes in thread pool mode.
+2026-04-08 03:05:51 +0000   47978 execution.flow     INFO     Start to run 2 nodes with concurrency level 16.
+2026-04-08 03:05:51 +0000   47978 execution.flow     INFO     Executing node retrieval. node run id: dafb5ccd-7765-4af4-a4d8-651544fb17f1_retrieval_0
+2026-04-08 03:05:52 +0000   47978 execution.flow     INFO     Node retrieval completes.
+2026-04-08 03:05:52 +0000   47978 execution.flow     INFO     Executing node llm. node run id: dafb5ccd-7765-4af4-a4d8-651544fb17f1_llm_0
+2026-04-08 03:05:59 +0000   47978 execution.flow     INFO     Node llm completes.
