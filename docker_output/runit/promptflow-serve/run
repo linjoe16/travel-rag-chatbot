@@ -1,10 +1,10 @@
 #! /bin/bash
 export PYTHON_KEYRING_BACKEND=keyrings.alt.file.PlaintextKeyring
+pip install azure-search-documents --quiet
 ls /connections
 pf connection create --file /connections/openai_conn.yaml
 pf connection create --file /connections/search_conn.yaml
 WORKER_NUM=${PROMPTFLOW_WORKER_NUM:-"1"}
-SERVING_ENGINE=${PROMPTFLOW_SERVING_ENGINE:-"fastapi"}
 cd /flow
-echo "Starting promptflow serving with engine: ${SERVING_ENGINE}"
+echo "Starting promptflow serving"
 gunicorn --worker-class uvicorn.workers.UvicornWorker -w ${WORKER_NUM} -b "0.0.0.0:8080" --timeout 300 "promptflow.core._serving.app:create_app(engine='fastapi')"
