@@ -1,16 +1,25 @@
 import subprocess
 import sys
 
+# ✅ Safe import with fallback install
 try:
     from azure.search.documents import SearchClient
+    from azure.core.credentials import AzureKeyCredential
 except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "azure-search-documents", "azure-core"])
+    subprocess.check_call([
+        sys.executable,
+        "-m",
+        "pip",
+        "install",
+        "azure-search-documents",
+        "azure-core"
+    ])
     from azure.search.documents import SearchClient
-    
+    from azure.core.credentials import AzureKeyCredential
+
 from promptflow.core import tool
-from azure.search.documents import SearchClient
-from azure.core.credentials import AzureKeyCredential
 import os
+
 
 @tool
 def retrieval(question: str) -> str:
@@ -18,6 +27,7 @@ def retrieval(question: str) -> str:
     search_key = os.environ.get("AZURE_SEARCH_KEY")
     index_name = os.environ.get("AZURE_SEARCH_INDEX", "travel-index")
 
+    # ✅ Validate config
     if not search_endpoint or not search_key:
         return "Azure Search is not configured properly."
 
@@ -32,7 +42,7 @@ def retrieval(question: str) -> str:
 
         context = ""
         for result in results:
-            result_dict = dict(result)  # ✅ fix
+            result_dict = dict(result)
 
             for field in ["content", "text", "chunk", "description"]:
                 value = result_dict.get(field)
